@@ -1,15 +1,9 @@
-# Python3 program for the above approach
-
 from typing import DefaultDict
-
 
 INT_MAX = 2147483647
 
-# Location data
-loc_data = [[-1, 10, 15, 20], [10, -1, 35, 25], [15, 35, -1, 30], [20, 25, 30, -1]]
-
 # Function to find the minimum cost path for all the paths
-def findMinRoute(tsp):
+def findMinRoute(tsp, isBack):
 	sum = 0
 	counter = 0
 	j = 0
@@ -19,7 +13,7 @@ def findMinRoute(tsp):
 
 	# Starting from the 0th indexed city i.e., the first city
 	visitedRouteList[0] = 1
-	route = [0] * len(tsp)
+	route = [0] * (len(tsp) - 1)
 	print(route)
 
 	# Traverse the adjacency matrix tsp[][]
@@ -45,29 +39,17 @@ def findMinRoute(tsp):
 			j = 0
 			i = route[counter] - 1
 			counter += 1
+
 	print(route)
 	
 	# Update the ending city in array from city which was last visited
-	i = route[counter - 1] - 1
-	print(i)
+	# Update the route to go back to the starting point
+	if (isBack):
+		i = route[counter - 1] - 1
+		print(i)
+		route += [1]
+		print(route)
+		sum += tsp[i][0]
 
-	for j in range(len(tsp)):
+	return sum, route
 
-		if (i != j) and tsp[i][j] < min:
-			min = tsp[i][j]
-			route[counter] = j + 1
-
-	sum += min
-    
-	# Started from the node where we finished as well.
-	print("Minimum Cost is :", sum)
-
-
-# Driver Code
-if __name__ == "__main__":
-
-	# Input Matrix
-	tsp = [[-1, 10, 15, 20], [10, -1, 35, 25], [15, 35, -1, 30], [20, 25, 30, -1]]
-
-	# Function Call
-	findMinRoute(tsp)
