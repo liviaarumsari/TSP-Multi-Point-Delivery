@@ -14,7 +14,6 @@ def findMinRoute(tsp, isBack):
 	# Starting from the 0th indexed city i.e., the first city
 	visitedRouteList[0] = 1
 	route = [0] * (len(tsp) - 1)
-	print(route)
 
 	# Traverse the adjacency matrix tsp[][]
 	while i < len(tsp) and j < len(tsp[i]):
@@ -39,16 +38,12 @@ def findMinRoute(tsp, isBack):
 			j = 0
 			i = route[counter] - 1
 			counter += 1
-
-	print(route)
 	
 	# Update the ending city in array from city which was last visited
 	# Update the route to go back to the starting point
 	if (isBack):
 		i = route[counter - 1] - 1
-		print(i)
 		route += [1]
-		print(route)
 		sum += tsp[i][0]
 
 	return sum, route
