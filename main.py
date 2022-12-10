@@ -26,21 +26,21 @@ print()
 while True:
     startPoint = int(input("Choose your starting point: "))
     if (startPoint >= 1 and startPoint <= 8):
-        stopList = np.array([startPoint-1])
+        stopList = [startPoint-1]
         break
     else:
         print("Please input the number available!")
 
 while True:
     stopSum = int(input("Choose how many stops you want to make: "))
-    if(startPoint > 0 and startPoint < 8):
+    if(stopSum > 0 and stopSum < 8):
         break
     else:
         print("Please input 1 - 7 amount of stops!")
 
 for i in range (1,stopSum+1):
     stopPoint = int(input("Stop " + str(i) + ": "))
-    stopList = np.append(stopList, [stopPoint-1]) 
+    stopList.append(stopPoint-1) 
 
 while True:
     isBack = input("Do you want to go back to your starting point after the last stop? (y/n) ")
@@ -49,7 +49,6 @@ while True:
     else:
         ("Please input y or n!")
 
-print(stopList)
 filteredRow = loc_data[stopList]
 filteredLoc = filteredRow[:,stopList]
 
@@ -58,9 +57,13 @@ if (isBack.lower() == "y"):
 else:
     sum, route = findMinRoute(filteredLoc, False)
 
-print(f'The shortest route you could take from your starting point with a total distance of {sum} kilometers is: ')
+print()
+print(f'The minimum total distance is {sum:.2f} kilometers')
+print("This is the route you should take: ")
 print(place_name[startPoint-1], end="")
 locFormat = " - {place}"
 for i in range (len(route)):
     place = place_name[stopList[route[i]-1]]
     print(f' - {place}', end="")
+print()
+print()
