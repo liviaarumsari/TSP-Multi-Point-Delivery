@@ -61,7 +61,6 @@ print()
 print(f'The minimum total distance is {sum:.2f} kilometers')
 print("This is the route you should take: ")
 print(place_name[startPoint-1], end="")
-locFormat = " - {place}"
 for i in range (len(route)):
     place = place_name[stopList[route[i]-1]]
     print(f' - {place}', end="")

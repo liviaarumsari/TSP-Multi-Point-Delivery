@@ -22,7 +22,8 @@ def findMinRoute(tsp, isBack):
 		if counter >= len(tsp[i]) - 1:
 			break
 
-		# If this path is unvisited then and if the cost is less then update the cost
+		# If this path is unvisited then and if the 
+		# cost is less then update the cost
 		if j != i and (visitedRouteList[j] == 0):
 			if tsp[i][j] < min:
 				min = tsp[i][j]
